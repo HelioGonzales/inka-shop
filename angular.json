@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "inka-shop": "apps/inka-shop",
+    "inka-shop-e2e": "apps/inka-shop-e2e"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "root": "apps/inka-shop-e2e",
+  "sourceRoot": "apps/inka-shop-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/inka-shop-e2e/cypress.json",
+        "devServerTarget": "inka-shop:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "inka-shop:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/inka-shop-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["inka-shop"]
+}
