@@ -15,6 +15,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ProductsModule } from '@inka-shop/products';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { ProductsListComponent } from './pages/products/products-list/products-list.component';
+import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,18 @@ const routes: Routes = [
         path: 'categories/form/:id',
         component: CategoriesFormComponent,
       },
+      {
+        path: 'products',
+        component: ProductsListComponent,
+      },
+      {
+        path: 'products/form',
+        component: ProductsFormComponent,
+      },
+      {
+        path: 'products/form/:id',
+        component: CategoriesFormComponent,
+      },
     ],
   },
 ];
@@ -49,6 +63,8 @@ const routes: Routes = [
     SidebarComponent,
     CategoriesListComponent,
     CategoriesFormComponent,
+    ProductsListComponent,
+    ProductsFormComponent,
   ],
   imports: [
     BrowserModule,
