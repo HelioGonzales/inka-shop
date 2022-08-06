@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'inka-shop-root',
+  selector: 'inkashop-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

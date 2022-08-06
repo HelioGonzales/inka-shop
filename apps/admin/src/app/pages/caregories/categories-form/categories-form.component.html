@@ -1,0 +1,39 @@
+<div class="admin-page card">
+  <div [innerText]="editMode ? 'Edit Category' : 'Add Category' " class="card-header">
+
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">You can add or edit categories here</h5>
+    <div class="row d-flex justify-content-end me-5">
+      <div class="col-2">
+        <nav class="nav nav-pills flex-column flex-sm-row">
+          <button [innerText]="editMode ? 'Edit' : 'Create' " class="flex-sm-fill text-sm-center nav-link active"
+            aria-current="page" type="button" (click)="onSubmit()" [disabled]="!form.valid">Create</button>
+          <button class="flex-sm-fill text-sm-center nav-link active bg-danger" aria-current="page"
+            [routerLink]="'/categories'">Cancel</button>
+        </nav>
+      </div>
+    </div>
+    <hr>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <form [formGroup]="form" class="row g-3" (ngSubmit)="form">
+          <div class="col-md-6">
+            <label class="form-label">Name</label>
+            <input formControlName="name" type="text" class="form-control">
+            <small *ngIf="!form.get('name')?.valid && form.get('name')?.touched" class="text-danger">
+              Name is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Icon</label>
+            <input formControlName="icon" type="text" class="form-control">
+            <small *ngIf="!form.get('icon')?.valid && form.get('icon')?.touched" class="text-danger">
+              Icon is required
+            </small>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
