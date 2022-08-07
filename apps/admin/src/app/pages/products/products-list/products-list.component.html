@@ -22,11 +22,11 @@
             <tr>
 
               <th scope="col">Name</th>
-              <th scope="col">Image</th>
+              <th scope="col" class="d-sm-none d-md-block">Image</th>
               <th scope="col">Price</th>
               <th scope="col">Stock</th>
               <th scope="col">Category</th>
-              <th scope="col">Created at</th>
+              <th scope="col" class="d-sm-none d-md-block">Created at</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -34,11 +34,12 @@
             <tr *ngFor="let product of products">
 
               <td>{{product.name}}</td>
-              <td><img style="width: 100px;" [src]="product.image" [alt]="product.name"></td>
+              <td class="d-sm-none d-md-block"><img style="width: 100px;" [src]="product.image" [alt]="product.name">
+              </td>
               <td>{{product.price}}</td>
               <td>{{product.countInStock}}</td>
               <td>{{product.category?.name}}</td>
-              <td>{{product.dateCreated}}</td>
+              <td class="d-sm-none d-md-block">{{product.dateCreated | date: 'short' }}</td>
               <td>
                 <button (click)="onDeleteCategory(product.id)" type="button" class="btn btn-danger btn-sm  m-1"><i
                     class="bi bi-trash"></i></button>

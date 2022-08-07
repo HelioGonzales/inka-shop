@@ -1,1 +1,99 @@
-<p>products-form works!</p>
+<div class="admin-page card">
+  <div [innerText]="editMode ? 'Edit Prouct' : 'Add Prouct' " class="card-header">
+
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">You can add or edit categories here</h5>
+    <div class="row d-flex justify-content-end me-5">
+      <div class="col-2">
+        <nav class="nav nav-pills flex-column flex-sm-row">
+          <button [innerText]="editMode ? 'Edit' : 'Create' " class="flex-sm-fill text-sm-center nav-link active"
+            aria-current="page" type="button" (click)="onSubmit()" [disabled]="!form.valid">Create</button>
+          <button class="flex-sm-fill text-sm-center nav-link active bg-danger" aria-current="page"
+            [routerLink]="'/products'">Cancel</button>
+        </nav>
+      </div>
+    </div>
+    <hr>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <form [formGroup]="form" class="row g-3" (ngSubmit)="form">
+          <div class="col-md-6">
+            <label class="form-label">Name</label>
+            <input formControlName="name" type="text" class="form-control">
+            <small *ngIf="!form.get('name')?.valid && form.get('name')?.touched" class="text-danger">
+              Name is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Brand</label>
+            <input formControlName="brand" type="text" class="form-control">
+            <small *ngIf="!form.get('brand')?.valid && form.get('brand')?.touched" class="text-danger">
+              Brand is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Price</label>
+            <input formControlName="price" type="number" class="form-control">
+            <small *ngIf="!form.get('price')?.valid && form.get('price')?.touched" class="text-danger">
+              Price is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Category</label>
+            <select formControlName="category" class="form-select" aria-label="Default select example">
+              <option [ngValue]="null">Select a category</option>
+              <option *ngFor="let category of categories">{{ category.name }}</option>
+            </select>
+            <small *ngIf="!form.get('category')?.valid && form.get('category')?.touched" class="text-danger">
+              Category is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">CountInStock</label>
+            <input formControlName="countInStock" type="number" class="form-control">
+            <small *ngIf="!form.get('countInStock')?.valid && form.get('countInStock')?.touched" class="text-danger">
+              CountInStock is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Is Featured</label>
+            <div class="form-check form-switch">
+              <input formControlName="isFeatured" class="form-check-input" type="checkbox" role="switch"
+                id="flexSwitchCheckChecked" checked>
+              <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+            </div>
+            <!-- <small *ngIf="!form.get('description')?.valid && form.get('description')?.touched" class="text-danger">
+              description is required
+            </small> -->
+          </div>
+          <div class="col-md-12">
+            <label class="form-label">description</label>
+            <textarea formControlName="description" type="number" class="form-control" [rows]="7"
+              [cols]="30"></textarea>
+            <small *ngIf="!form.get('description')?.valid && form.get('description')?.touched" class="text-danger">
+              description is required
+            </small>
+          </div>
+          <div class="col-md-12">
+            <label class="form-label">Rich description</label>
+            <textarea formControlName="richDescription" type="number" class="form-control" [rows]="7"
+              [cols]="30"></textarea>
+            <!-- <small *ngIf="!form.get('description')?.valid && form.get('description')?.touched" class="text-danger">
+                        description is required
+                      </small> -->
+          </div>
+          <div class="col-md-12">
+            <label class="form-label">Main Image</label>
+            <input type="file" accept="image/*" class="form-control" (change)="onImageUpload($event)"
+              formControlName="image">
+
+            <div class="col-2 mt-3 pl-0">
+              <img style="width: 100%" [src]="imageDisplay" alt="">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
