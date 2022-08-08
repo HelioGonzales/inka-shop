@@ -1,6 +1,9 @@
-import { Product } from './../../../../../../../libs/products/src/lib/models/product';
+import { PopupService } from './../../../shared/service/popup.service';
+import { Router } from '@angular/router';
+
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '@inka-shop/products';
+import { Product, ProductsService } from '@inka-shop/products';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'admin-products-list',
@@ -10,15 +13,51 @@ import { ProductsService } from '@inka-shop/products';
 export class ProductsListComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private productSvc: ProductsService) {}
+  constructor(
+    private productSvc: ProductsService,
+    private router: Router,
+    private popupSvc: PopupService
+  ) {}
 
   ngOnInit(): void {
     this._getProducts();
   }
 
-  onDeleteCategory(productId: string) {}
+  onDeleteProduct(productId: string) {
+    swal
+      .fire({
+        title: 'Are you sure to Delete the category?',
+        text: 'You will not be able to recover the category',
+        showCancelButton: true,
+        confirmButtonColor: '#0d6efd',
+        cancelButtonColor: '#dc3545',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, keep it',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.productSvc.deleteProduct(productId).subscribe(
+            (res) => {
+              swal.fire(
+                'Deleted!',
+                'Your category has been deleted.',
+                'success'
+              );
+              this._getProducts();
+            },
+            (error) => {
+              this.popupSvc.popupError(error.error.message);
+            }
+          );
+        } else {
+          return;
+        }
+      });
+  }
 
-  onUpdateCategory(productId: string) {}
+  onUpdateProduct(productId: string) {
+    this.router.navigate([`products/form/${productId}`]);
+  }
 
   private _getProducts() {
     this.productSvc.getProducts().subscribe((res) => (this.products = res));

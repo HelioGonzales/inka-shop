@@ -16,24 +16,27 @@ export class ProductsService {
     return this.http.get<Product[]>(`${this.apiURLProducts}products`);
   }
 
-  // getProduct(productId: string): Observable<Product> {
-  //   return this.http.get<Product>(
-  //     `${this.apiURLProducts}products/${productId}`
-  //   );
-  // }
+  getProduct(productId: string): Observable<Product> {
+    return this.http.get<Product>(
+      `${this.apiURLProducts}products/${productId}`
+    );
+  }
 
-  // createProduct(product: Product): Observable<Product> {
-  //   return this.http.post<Product>(`${this.apiURLProducts}products`, product);
-  // }
+  createProduct(productData: FormData): Observable<Product> {
+    return this.http.post<Product>(
+      `${this.apiURLProducts}products`,
+      productData
+    );
+  }
 
-  // updateProduct(product: Product): Observable<Product> {
-  //   return this.http.put<Product>(
-  //     `${this.apiURLProducts}products/${product.id}`,
-  //     product
-  //   );
-  // }
+  updateProduct(productData: FormData, productId: string): Observable<Product> {
+    return this.http.put<Product>(
+      `${this.apiURLProducts}products/${productId}`,
+      productData
+    );
+  }
 
-  // deleteProduct(productId: string): Observable<any> {
-  //   return this.http.delete<any>(`${this.apiURLProducts}products/${productId}`);
-  // }
+  deleteProduct(productId: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiURLProducts}products/${productId}`);
+  }
 }

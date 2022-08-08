@@ -49,7 +49,7 @@ const routes: Routes = [
       },
       {
         path: 'products/form/:id',
-        component: CategoriesFormComponent,
+        component: ProductsFormComponent,
       },
     ],
   },
