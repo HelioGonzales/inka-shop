@@ -1,0 +1,101 @@
+<div class="admin-page card">
+  <div [innerText]="editMode ? 'Edit Category' : 'Add Category' " class="card-header">
+
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">You can add or edit users here</h5>
+    <div class="row d-flex justify-content-end me-5">
+      <div class="col-2">
+        <nav class="nav nav-pills flex-column flex-sm-row">
+          <button [innerText]="editMode ? 'Edit' : 'Create' " class="flex-sm-fill text-sm-center nav-link active"
+            aria-current="page" type="button" (click)="onSubmit()" [disabled]="!form.valid">Create</button>
+          <button class="flex-sm-fill text-sm-center nav-link active bg-danger" aria-current="page"
+            [routerLink]="'/users'">Cancel</button>
+        </nav>
+      </div>
+    </div>
+    <hr>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <form [formGroup]="form" class="row g-3" (ngSubmit)="form">
+          <div class="col-md-6">
+            <label class="form-label">Name</label>
+            <input formControlName="name" type="text" class="form-control">
+            <small *ngIf="!form.get('name')?.valid && form.get('name')?.touched" class="text-danger">
+              Name is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input formControlName="email" type="email" class="form-control">
+            <small *ngIf="!form.get('email')?.valid && form.get('email')?.touched" class="text-danger">
+              <span *ngIf="!form.get('email')?.errors?.['required']">email is required</span>
+              <span *ngIf="!form.get('email')?.errors?.['email']">email is invalid</span>
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Password</label>
+            <input formControlName="password" type="password" class="form-control">
+            <small *ngIf="!form.get('password')?.valid && form.get('password')?.touched" class="text-danger">
+              password is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Phone</label>
+            <input formControlName="phone" type="text" class="form-control">
+            <small *ngIf="!form.get('phone')?.valid && form.get('phone')?.touched" class="text-danger">
+              phone is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Is Admin</label>
+            <div class="form-check form-switch">
+              <input formControlName="isAdmin" class="form-check-input" type="checkbox" role="switch"
+                id="flexSwitchCheckChecked" checked>
+              <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">street</label>
+            <input formControlName="street" type="text" class="form-control">
+            <small *ngIf="!form.get('street')?.valid && form.get('street')?.touched" class="text-danger">
+              street is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">apartment</label>
+            <input formControlName="apartment" type="text" class="form-control">
+            <small *ngIf="!form.get('apartment')?.valid && form.get('apartment')?.touched" class="text-danger">
+              apartment is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Zip Code</label>
+            <input formControlName="zip" type="text" class="form-control">
+            <small *ngIf="!form.get('zip')?.valid && form.get('zip')?.touched" class="text-danger">
+              Zip Code is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">City</label>
+            <input formControlName="city" type="text" class="form-control">
+            <small *ngIf="!form.get('city')?.valid && form.get('city')?.touched" class="text-danger">
+              city is required
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Country</label>
+            <select formControlName="country" class="form-select" aria-label="Default select example">
+              <option [ngValue]="null">Select a category</option>
+              <option [value]="country.id" *ngFor="let country of countries">{{
+                country.name }}</option>
+            </select>
+            <small *ngIf="!form.get('category')?.valid && form.get('category')?.touched" class="text-danger">
+              Category is required
+            </small>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

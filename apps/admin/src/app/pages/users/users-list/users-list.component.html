@@ -1,0 +1,53 @@
+<div class="admin-page card">
+  <div class="card-header">
+    Content
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <div class="row">
+      <div class="col-2">
+        <nav class="nav nav-pills flex-column flex-sm-row">
+          <button class="flex-sm-fill text-sm-center nav-link active" aria-current="page" [routerLink]="'form'">+
+            New</button>
+
+        </nav>
+      </div>
+    </div>
+    <hr>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Is Admin</th>
+              <th scope="col">Country</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+
+              <td>{{user.name}}</td>
+              <td>{{user.email}}</td>
+              <td>
+                <span [ngClass]="user.isAdmin ? 'text-bg-success' : 'text-bg-danger'" class="badge rounded-pill">
+                  <i [ngClass]="user.isAdmin ? 'bi bi-check' : 'bi bi-x'"></i>
+                </span>
+              </td>
+              <td>{{user.country}}</td>
+              <td>
+                <button (click)="onDeleteUser(user.id)" type="button" class="btn btn-danger btn-sm  m-1"><i
+                    class="bi bi-trash"></i></button>
+                <button (click)="onUpdateUser(user.id)" type="button" class="btn btn-primary btn-sm m-1"><i
+                    class="bi bi-pencil"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
