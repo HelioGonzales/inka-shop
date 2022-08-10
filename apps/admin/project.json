@@ -19,7 +19,10 @@
           "apps/admin/src/styles.scss",
           "node_modules/sweetalert2/src/sweetalert2.scss"
         ],
-        "scripts": ["node_modules/sweetalert2/dist/sweetalert2.js"]
+        "scripts": [
+          "node_modules/sweetalert2/dist/sweetalert2.js",
+          "node_modules/bootstrap/dist/js/bootstrap.min.js"
+        ]
       },
       "configurations": {
         "production": {

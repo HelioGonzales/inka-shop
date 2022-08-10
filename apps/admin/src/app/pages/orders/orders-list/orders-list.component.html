@@ -1,0 +1,42 @@
+<div class="admin-page card">
+  <div class="card-header">
+    Content
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+
+    <hr>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">Total Price</th>
+              <th scope="col">Date Ordered</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders">
+
+              <td>{{order.user?.name}}</td>
+              <td>{{order.totalPrice}}</td>
+              <td>{{order.dateOrdered | date: 'short'}}</td>
+              <td><span [innerText]="orderStatus[order.status].label"
+                  class="badge text-bg-{{orderStatus[order.status].color}}"></span></td>
+
+              <td>
+                <button (click)="onDeleteOrder(order.id)" type="button" class="btn btn-danger btn-sm  m-1"><i
+                    class="bi bi-trash"></i></button>
+                <button (click)="onShowOrder(order.id)" type="button" class="btn btn-primary btn-sm m-1"><i
+                    class="bi bi-eye"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
