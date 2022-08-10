@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'libs/users/src/lib/models/user.model';
-import { UsersService } from 'libs/users/src/lib/services/users.service';
+import { UsersService, User } from '@inka-shop/users';
 import { PopupService } from '../../../shared/service/popup.service';
 import * as countriesLib from 'i18n-iso-countries';
 
