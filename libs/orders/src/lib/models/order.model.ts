@@ -3,7 +3,8 @@ import { OrderItem } from './order-item.model';
 
 export class Order {
   id!: string;
-  orderItem?: OrderItem;
+  // orderItems?: OrderItem[];
+  orderItems?: any[];
   shippingAddress1?: string;
   shippingAddress2?: string;
   city?: string;
@@ -12,6 +13,7 @@ export class Order {
   phone?: string;
   status?: any;
   totalPrice?: string;
-  user?: User;
+  // user?: User;
+  user?: any;
   dateOrdered?: string;
 }

@@ -1,4 +1,4 @@
-<div class="admin-page card">
+<div class="admin-page card" *ngIf="order">
   <div [innerText]="'View order'" class="card-header">
   </div>
   <h5 class="card-title">You edit can order status here</h5>
@@ -8,13 +8,32 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
           <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
-            data-bs-target="#collapseOne">1. What is HTML?</button>
+            data-bs-target="#collapseOne">Order Details</button>
         </h2>
-        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#myAccordion">
           <div class="card-body">
-            <p>HTML stands for HyperText Markup Language. HTML is the standard markup language for describing the
-              structure of web pages. <a href="https://www.tutorialrepublic.com/html-tutorial/" target="_blank">Learn
-                more.</a></p>
+            <div class="row">
+              <div class="col-4">
+                <h6>Order Id</h6>
+                <p>{{order.id}}</p>
+              </div>
+              <div class="col-4">
+                <h6>Order Date</h6>
+                <p>{{order.dateOrdered | date: 'short'}}</p>
+              </div>
+              <div class="col-4">
+                <h6>Order Status</h6>
+                <select class="form-select" aria-label="Default select example">
+                  <option (change)="onChangeStatus($event)" [(ngModel)]="selectedStatus"
+                    *ngFor="let label of orderStatuses" [value]="label.id">{{label.name}}</option>
+
+                </select>
+              </div>
+              <div class="col-4">
+                <h6>Order Total Price</h6>
+                <p>{{order.totalPrice | currency: 'EUR'}}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -25,10 +44,26 @@
         </h2>
         <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#myAccordion">
           <div class="card-body">
-            <p>Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and easier web development.
-              It
-              is a collection of CSS and HTML conventions. <a
-                href="https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></p>
+            <div class="row">
+              <div class="col-2">Name</div>
+              <div class="col-2">Brand</div>
+              <div class="col-2">Category</div>
+              <div class="col-2">Price</div>
+              <div class="col-2">Quantity</div>
+              <div class="col-2">Subtotal</div>
+            </div>
+            <div class="row" *ngFor="let orderItem of order.orderItems">
+              <div class="col-2">{{orderItem.product.name}}</div>
+              <div class="col-2">{{orderItem.product.brand}}</div>
+              <div class="col-2">{{orderItem.product.category.name}}</div>
+              <div class="col-2">{{orderItem.product.price | currency: 'EUR'}}</div>
+              <div class="col-2">{{orderItem.quantity}}</div>
+              <div class="col-2">{{orderItem.product.price * orderItem.quantity | currency: 'EUR'}}</div>
+            </div>
+            <div class="row">
+              <div class="col-2 offset-8 text-success">Total Price</div>
+              <div class="col-2 text-success">{{order.totalPrice | currency: 'EUR'}}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -37,11 +72,27 @@
           <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
             data-bs-target="#collapseThree">3. What is CSS?</button>
         </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
+        <div id="collapseThree" class="accordion-collapse collapse show" data-bs-parent="#myAccordion">
           <div class="card-body">
-            <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML
-              element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/"
-                target="_blank">Learn more.</a></p>
+            <div class="row">
+              <div class="col-4">
+                <h6>Order Address</h6>
+                <p>
+                  {{order.shippingAddress1}} <br>
+                  {{order.shippingAddress2}} <br>
+                  {{order.zip}} <br>
+                  {{order.country}}
+                </p>
+              </div>
+              <div class="col-4">
+                <h6>Customer Info</h6>
+                <p>{{order.user.name}}</p>
+              </div>
+              <div class="col-4">
+                <h6>Contact Info</h6>
+                <p>{{order.phone}}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
