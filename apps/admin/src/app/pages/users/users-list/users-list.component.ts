@@ -1,4 +1,4 @@
-import { UsersService } from './../../../../../../../libs/users/src/lib/services/users.service';
+import { UsersService } from '@inka-shop/users';
 import { Component, OnInit } from '@angular/core';
 import { PopupService } from '../../../shared/service/popup.service';
 import { Router } from '@angular/router';

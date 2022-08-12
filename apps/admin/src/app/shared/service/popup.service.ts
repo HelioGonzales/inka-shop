@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 export class PopupService {
   constructor(private router: Router) {}
 
-  popup(routeToGo: string, title: string) {
+  popup(title: string, routeToGo: string) {
     swal
       .fire({
         title: title,

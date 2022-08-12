@@ -1,3 +1,4 @@
+import { PopupService } from './../../../shared/service/popup.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Order, OrdersService } from '@inka-shop/orders';
@@ -13,10 +14,12 @@ export class OrdersDetailComponent implements OnInit {
   order!: Order;
   orderStatuses: any[] = [];
   selectedStatus: any;
+  currentRoute!: string;
 
   constructor(
     private orderSvc: OrdersService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private popupSvc: PopupService
   ) {}
 
   ngOnInit(): void {
@@ -25,14 +28,26 @@ export class OrdersDetailComponent implements OnInit {
   }
 
   onChangeStatus(event: any) {
-    console.log(event);
+    this.orderSvc
+      .updateOrder({ status: event.target.value }, this.order.id)
+      .subscribe((res) => {
+        this.popupSvc.popup(
+          `status was changed ${event.target.value}`,
+          this.currentRoute
+        );
+      });
   }
 
   private _getOrder() {
+    this.activatedRoute.url.subscribe((res) => {
+      this.currentRoute = `${res[0].path}/${res[1].path}`;
+    });
+
     this.activatedRoute.params.subscribe((params: any) => {
       if (params.id) {
         this.orderSvc.getOrder(params.id).subscribe((res) => {
           this.order = res;
+          this.selectedStatus = this.order.status;
         });
       }
     });

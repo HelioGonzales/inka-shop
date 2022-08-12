@@ -18,8 +18,15 @@
           "apps/inka-shop/src/favicon.ico",
           "apps/inka-shop/src/assets"
         ],
-        "styles": ["apps/inka-shop/src/styles.scss"],
-        "scripts": []
+        "styles": [
+          "apps/inka-shop/src/styles.scss",
+          "apps/admin/src/styles.scss",
+          "node_modules/sweetalert2/src/sweetalert2.scss"
+        ],
+        "scripts": [
+          "node_modules/sweetalert2/dist/sweetalert2.js",
+          "node_modules/bootstrap/dist/js/bootstrap.min.js"
+        ]
       },
       "configurations": {
         "production": {

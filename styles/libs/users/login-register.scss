@@ -1,0 +1,14 @@
+.login-register {
+  display: flex;
+  background-color: rgb(69, 72, 77);
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+  &-panel {
+    background: white;
+    box-shadow: 5px 10px orange;
+    width: 400px;
+    height: 80%;
+  }
+}
