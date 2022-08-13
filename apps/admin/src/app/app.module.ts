@@ -1,3 +1,4 @@
+import { AuthguardGuard } from './../../../../libs/users/src/lib/services/authguard.guard';
 import { CategoriesFormComponent } from './pages/caregories/categories-form/categories-form.component';
 import { CategoriesListComponent } from './pages/caregories/categories-list/categories-list.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,6 +28,7 @@ const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
+    canActivate: [AuthguardGuard],
     children: [
       {
         path: 'dashboard',
