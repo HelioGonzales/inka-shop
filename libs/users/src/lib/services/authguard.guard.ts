@@ -29,9 +29,17 @@ export class AuthguardGuard implements CanActivate {
     const token = this.localstorageSvc.getToken();
 
     if (token) {
+      const tokenDecode = JSON.parse(atob(token.split('.')[1]));
+      if (tokenDecode.isAdmin && !this._tokenExpired(tokenDecode.exp))
+        return true;
+
       return true;
     }
     this.router.navigate(['/login']);
     return false;
+  }
+
+  private _tokenExpired(expiration: any): boolean {
+    return Math.floor(new Date().getTime() / 1000) >= expiration;
   }
 }

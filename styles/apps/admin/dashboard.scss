@@ -1,0 +1,64 @@
+.d-item {
+  display: flex;
+  text-align: center;
+  color: white;
+  justify-content: space-between;
+
+  .pi {
+    font-size: 4em;
+    margin-bottom: 15px;
+  }
+
+  .name {
+    font-size: 1.4em;
+  }
+
+  .number {
+    font-size: 1.5em;
+    // float: right;
+  }
+}
+
+.d-orders {
+  padding: 20px;
+  border-radius: 10px;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(48, 110, 194, 0.7259278711484594) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+.d-users {
+  padding: 20px;
+  border-radius: 10px;
+
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(120, 121, 9, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+.d-products {
+  padding: 20px;
+  border-radius: 10px;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    261deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(50, 6, 145, 1) 100%
+  );
+}
+.d-totalsales {
+  padding: 20px;
+  border-radius: 10px;
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(227, 210, 44, 1) 100%
+  );
+}

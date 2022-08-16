@@ -3,3 +3,6 @@ export * from './lib/services/users.service';
 
 export * from './lib/models/user.model';
 export * from './lib/services/authguard.guard';
+export * from './lib/services/jwt.interceptor';
+
+export * from './lib/services/auth.service';

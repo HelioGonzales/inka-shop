@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriesService, Category } from '@inka-shop/products';
+import { Subscription } from 'rxjs';
 import { PopupService } from '../../../shared/service/popup.service';
 
 @Component({
@@ -9,11 +10,12 @@ import { PopupService } from '../../../shared/service/popup.service';
   templateUrl: './categories-form.component.html',
   styles: [],
 })
-export class CategoriesFormComponent implements OnInit {
+export class CategoriesFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   isSubmited = false;
   editMode = false;
   currentCagoryId: string = null as any;
+  endSubs!: Subscription;
 
   constructor(
     private categorySvc: CategoriesService,
@@ -63,7 +65,7 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   private _onAddCategory(category: Category) {
-    this.categorySvc.createCategory(category).subscribe(
+    this.endSubs = this.categorySvc.createCategory(category).subscribe(
       (category: Category) => {
         this.form.reset();
         this.popupSvc.popup('/categories', `${category.name} created`);
@@ -76,7 +78,7 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   private _onUpdateCategory(category: Category) {
-    this.categorySvc.updateCategory(category).subscribe(
+    this.endSubs = this.categorySvc.updateCategory(category).subscribe(
       (category: Category) => {
         this.form.reset();
         this.popupSvc.popup('/categories', `${category.name} updated`);
@@ -86,5 +88,11 @@ export class CategoriesFormComponent implements OnInit {
         this.popupSvc.popupError(error.error.message);
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.endSubs.unsubscribe();
   }
 }

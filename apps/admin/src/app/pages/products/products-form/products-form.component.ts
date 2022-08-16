@@ -8,6 +8,7 @@ import {
 } from '@inka-shop/products';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'admin-products-form',
@@ -20,6 +21,7 @@ export class ProductsFormComponent implements OnInit {
   categories: Category[] = [];
   imageDisplay!: any | ArrayBuffer;
   currentProductId!: string;
+  endSubs!: Subscription;
 
   constructor(
     private categoriesSvc: CategoriesService,
@@ -81,13 +83,13 @@ export class ProductsFormComponent implements OnInit {
   }
 
   private _getCategories() {
-    this.categoriesSvc.getCategories().subscribe((res) => {
+    this.endSubs = this.categoriesSvc.getCategories().subscribe((res) => {
       this.categories = res;
     });
   }
 
   private _onAddProduct(productData: FormData) {
-    this.productSvc.createProduct(productData).subscribe(
+    this.endSubs = this.productSvc.createProduct(productData).subscribe(
       (product: Product) => {
         this.form.reset();
         this.popupSvc.popup('/products', `${product.name} created`);
@@ -100,7 +102,7 @@ export class ProductsFormComponent implements OnInit {
   }
 
   private _onUpdateProduct(productFormData: FormData) {
-    this.productSvc
+    this.endSubs = this.productSvc
       .updateProduct(productFormData, this.currentProductId)
       .subscribe(
         (product: Product) => {
@@ -147,5 +149,11 @@ export class ProductsFormComponent implements OnInit {
         });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.endSubs.unsubscribe();
   }
 }

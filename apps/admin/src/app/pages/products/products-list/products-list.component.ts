@@ -1,17 +1,19 @@
 import { PopupService } from './../../../shared/service/popup.service';
 import { Router } from '@angular/router';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product, ProductsService } from '@inka-shop/products';
 import swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'admin-products-list',
   templateUrl: './products-list.component.html',
   styles: [],
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit, OnDestroy {
   products: Product[] = [];
+  endSubs!: Subscription;
 
   constructor(
     private productSvc: ProductsService,
@@ -36,7 +38,7 @@ export class ProductsListComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          this.productSvc.deleteProduct(productId).subscribe(
+          this.endSubs = this.productSvc.deleteProduct(productId).subscribe(
             (res) => {
               swal.fire(
                 'Deleted!',
@@ -60,6 +62,14 @@ export class ProductsListComponent implements OnInit {
   }
 
   private _getProducts() {
-    this.productSvc.getProducts().subscribe((res) => (this.products = res));
+    this.endSubs = this.productSvc
+      .getProducts()
+      .subscribe((res) => (this.products = res));
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.endSubs.unsubscribe();
   }
 }

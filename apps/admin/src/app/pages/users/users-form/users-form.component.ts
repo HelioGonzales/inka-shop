@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService, User } from '@inka-shop/users';
 import { PopupService } from '../../../shared/service/popup.service';
 import * as countriesLib from 'i18n-iso-countries';
+import { Subscription } from 'rxjs';
 
 declare const require: (arg0: string) => countriesLib.LocaleData;
 
@@ -12,12 +13,13 @@ declare const require: (arg0: string) => countriesLib.LocaleData;
   templateUrl: './users-form.component.html',
   styles: [],
 })
-export class UsersFormComponent implements OnInit {
+export class UsersFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   isSubmited = false;
   editMode = false;
   currentUserId: string = null as any;
   countries: any[] = [];
+  endSubs!: Subscription;
 
   constructor(
     private usersSvc: UsersService,
@@ -80,7 +82,7 @@ export class UsersFormComponent implements OnInit {
   }
 
   private _onAddUser(user: User) {
-    this.usersSvc.createUser(user).subscribe(
+    this.endSubs = this.usersSvc.createUser(user).subscribe(
       (user: User) => {
         this.form.reset();
         this.popupSvc.popup('/users', `${user.name} created`);
@@ -93,7 +95,7 @@ export class UsersFormComponent implements OnInit {
   }
 
   private _onUpdateUser(user: User) {
-    this.usersSvc.updateUser(user).subscribe(
+    this.endSubs = this.usersSvc.updateUser(user).subscribe(
       (user: User) => {
         this.form.reset();
         this.popupSvc.popup('/users', `${user.name} updated`);
@@ -132,5 +134,11 @@ export class UsersFormComponent implements OnInit {
       };
     });
     // { 'AF': 'Afghanistan', 'AL': 'Albania', [...], 'ZM': 'Zambia', 'ZW': 'Zimbabwe' }
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.endSubs.unsubscribe();
   }
 }
