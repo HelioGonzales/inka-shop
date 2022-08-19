@@ -1,4 +1,3 @@
-import { UiModule } from '@inka-shop/ui';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,6 +8,9 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { NavComponent } from './shared/nav/nav.component';
+import { ProductsModule } from '@inka-shop/products';
+import { UiModule } from '@inka-shop/ui';
 
 const routes: Routes = [
   {
@@ -28,11 +30,13 @@ const routes: Routes = [
     ProductListComponent,
     HeaderComponent,
     FooterComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    ProductsModule,
     UiModule,
   ],
   providers: [],
