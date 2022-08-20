@@ -1,11 +1,11 @@
 @import './base/colors.scss';
 @import './base/fonts.scss';
 @import './base/mixins.scss';
-@import './base/configuration.scss';
 
 // Libraries
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~bootstrap-icons/font/bootstrap-icons.css';
+@import './base/configuration.scss';
 
 // Shared
 @import './apps/admin/shell.scss';

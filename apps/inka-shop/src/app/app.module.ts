@@ -11,6 +11,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { ProductsModule } from '@inka-shop/products';
 import { UiModule } from '@inka-shop/ui';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     ProductsModule,
     UiModule,

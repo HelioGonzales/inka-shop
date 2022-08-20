@@ -2,11 +2,13 @@
 @import './base/colors.scss';
 @import './base/fonts.scss';
 @import './base/mixins.scss';
-@import './base/configuration.scss';
 
 // Libraries
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~bootstrap-icons/font/bootstrap-icons.css';
+@import '~animate.css/animate.css';
+
+@import './base/configuration.scss';
 
 // Pages
 @import './apps/shop/pages/home-page.scss';
@@ -21,9 +23,9 @@
 @import './libs/ui/ui.scss';
 @import './libs/products/products.scss';
 
-.container {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: var(--bs-warning);
-}
+// .container {
+//   // margin: 0;
+//   // padding: 0;
+//   // box-sizing: border-box;
+//   background-color: var(--bs-warning);
+// }
