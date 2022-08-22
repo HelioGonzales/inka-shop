@@ -23,9 +23,9 @@
 @import './libs/ui/ui.scss';
 @import './libs/products/products.scss';
 
-// .container {
-//   // margin: 0;
-//   // padding: 0;
-//   // box-sizing: border-box;
-//   background-color: var(--bs-warning);
-// }
+.container {
+  // margin: 0;
+  // padding: 0;
+  // box-sizing: border-box;
+  background-color: var(--bs-gray-400);
+}

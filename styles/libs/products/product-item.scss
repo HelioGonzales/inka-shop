@@ -1,0 +1,33 @@
+.product-item {
+  &-wrapper {
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 250px;
+    margin-top: 85px;
+  }
+
+  .image {
+    width: 60%;
+    height: 150px;
+    margin-top: -85px;
+    object-fit: cover;
+  }
+
+  .name {
+    margin: 10px 0;
+    width: 140px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .price {
+    color: $primary-color;
+    font-size: 1.2em;
+  }
+}

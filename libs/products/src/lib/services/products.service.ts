@@ -39,4 +39,10 @@ export class ProductsService {
   deleteProduct(productId: string): Observable<any> {
     return this.http.delete<any>(`${this.apiURLProducts}products/${productId}`);
   }
+
+  getFeaturedProducts(count: number): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      `${this.apiURLProducts}products/get/featured/${count}`
+    );
+  }
 }

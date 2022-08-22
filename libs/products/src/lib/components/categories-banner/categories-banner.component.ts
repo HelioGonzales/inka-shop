@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Category } from '../../models/category';
 import { CategoriesService } from '../../services/categories.service';
 
@@ -7,14 +8,21 @@ import { CategoriesService } from '../../services/categories.service';
   templateUrl: './categories-banner.component.html',
   styles: [],
 })
-export class CategoriesBannerComponent implements OnInit {
+export class CategoriesBannerComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
+  endSubs$!: Subscription;
 
   constructor(private caregoriesSvc: CategoriesService) {}
 
   ngOnInit(): void {
-    this.caregoriesSvc
+    this.endSubs$ = this.caregoriesSvc
       .getCategories()
       .subscribe((res) => (this.categories = res));
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.endSubs$.unsubscribe();
   }
 }
