@@ -1,0 +1,21 @@
+<div class="products-page">
+  <div class="row">
+    <div class="col-md-3" *ngIf="!isCategoryPage">
+      <h4>Categories</h4>
+      <div class="form-check" *ngFor="let category of categories">
+        <input [(ngModel)]="category.checked" (change)="categoryFilter()" class="form-check-input" type="checkbox"
+          value="" [id]="category.id">
+        <label class="form-check-label" [for]="category.id">
+          {{ category.name }}
+        </label>
+      </div>
+    </div>
+    <div [ngClass]="{'col-md-9': !isCategoryPage, 'col-md-12': isCategoryPage}">
+      <div class="row" *ngIf="products">
+        <div [ngClass]="{'col-md-4': !isCategoryPage, 'col-md-3': isCategoryPage}" *ngFor="let product of products">
+          <products-product-item [product]="product"></products-product-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
