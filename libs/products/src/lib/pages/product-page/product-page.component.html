@@ -1,0 +1,26 @@
+<div class="product-page">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- <ui-gallery></ui-gallery> -->
+    </div>
+    <div class="col-md-6 product" *ngIf="product">
+      <h2 class="product-name">{{product.name}}</h2>
+      <p class="product-desc">
+        {{product.description}}
+      </p>
+      <div class="product-price">
+        {{ product.price | currency: 'EUR'}}
+        <!-- <span class="price-before">{{ product.price + 18 | currency: 'EUR'}}</span> -->
+      </div>
+      <div class="product-quantity w-25">
+        <div class="col-md-12 p-2">
+          <label for="quantity" class="form-label">Quantity</label>
+          <input [(ngModel)]="quantity" id="quantity" type="number" class="form-control" [min]="1" [max]="99">
+        </div>
+      </div>
+      <div class="product-actions">
+        <button class="btn btn-primary m-2">Buy Now</button>
+        <button class="btn btn-dark" (click)="addToCart()">Add to Cart</button>
+      </div>
+    </div>
+  </div>

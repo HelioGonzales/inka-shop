@@ -8,6 +8,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { FeaturedProductsComponent } from './components/featured-products/featured-products.component';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { FormsModule } from '@angular/forms';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'category/:id',
     component: ProductsListComponent,
+  },
+  {
+    path: 'products/:id',
+    component: ProductPageComponent,
   },
 ];
 
@@ -33,6 +38,7 @@ const routes: Routes = [
     ProductItemComponent,
     FeaturedProductsComponent,
     ProductsListComponent,
+    ProductPageComponent,
   ],
   exports: [
     ProductsSearchComponent,
@@ -40,6 +46,7 @@ const routes: Routes = [
     ProductItemComponent,
     FeaturedProductsComponent,
     ProductsListComponent,
+    ProductPageComponent,
   ],
 })
 export class ProductsModule {}

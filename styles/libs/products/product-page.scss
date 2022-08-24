@@ -1,0 +1,24 @@
+.product {
+  &-name {
+    font-size: 2em;
+  }
+
+  &-desc {
+    font-size: 1.4em;
+  }
+
+  &-price {
+    font-size: 1.2em;
+    font-weight: 600;
+    border-bottom: 1px solid gray;
+    padding: 25px 0;
+  }
+
+  &-quantity {
+    margin: 25px 0;
+
+    label {
+      font-size: 1.2em;
+    }
+  }
+}
