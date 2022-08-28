@@ -11,6 +11,7 @@ import { NavComponent } from './shared/nav/nav.component';
 import { ProductsModule } from '@inka-shop/products';
 import { UiModule } from '@inka-shop/ui';
 import { HttpClientModule } from '@angular/common/http';
+import { OrdersModule } from '@inka-shop/orders';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ProductsModule,
     UiModule,
+    OrdersModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

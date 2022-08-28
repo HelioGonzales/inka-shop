@@ -1,3 +1,4 @@
+import { CartService } from '@inka-shop/orders';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(cartSvc: CartService) {
+    cartSvc.initCartLocalStorage();
+  }
 
   ngOnInit(): void {}
 }

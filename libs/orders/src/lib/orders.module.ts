@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
+import { CartService } from './services/cart.service';
+import { CartIconComponent } from './components/cart-icon/cart-icon.component';
 
 export const ordersRoutes: Route[] = [];
 
 @NgModule({
   imports: [CommonModule, RouterModule],
+  providers: [CartService],
+  declarations: [CartIconComponent],
+  exports: [CartIconComponent],
 })
-export class OrdersModule {}
+export class OrdersModule {
+  constructor() {}
+}

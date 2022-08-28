@@ -9,6 +9,7 @@ import { FeaturedProductsComponent } from './components/featured-products/featur
 import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { FormsModule } from '@angular/forms';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
+import { UiModule } from '@inka-shop/ui';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     HttpClientModule,
     FormsModule,
+    UiModule,
   ],
   declarations: [
     ProductsSearchComponent,

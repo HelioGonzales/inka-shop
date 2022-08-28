@@ -32,7 +32,6 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   private _getProduct(id: string) {
     this.endSubs$ = this.productsSvc.getProduct(id).subscribe((res) => {
       this.product = res;
-      console.log(this.product);
     });
   }
 

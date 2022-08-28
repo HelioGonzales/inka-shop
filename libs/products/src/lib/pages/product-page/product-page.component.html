@@ -1,9 +1,9 @@
-<div class="product-page">
+<div class="product-page" *ngIf="product">
   <div class="row">
     <div class="col-md-6">
-      <!-- <ui-gallery></ui-gallery> -->
+      <ui-gallery [images]="product.images"></ui-gallery>
     </div>
-    <div class="col-md-6 product" *ngIf="product">
+    <div class="col-md-6 product">
       <h2 class="product-name">{{product.name}}</h2>
       <p class="product-desc">
         {{product.description}}
