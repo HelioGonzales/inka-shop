@@ -1,3 +1,4 @@
+import { PopupProdService } from './../../services/popup-prod.service';
 import { Product } from './../../models/product';
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from '@inka-shop/orders';
@@ -11,7 +12,10 @@ import { CartItem } from '@inka-shop/orders';
 export class ProductItemComponent implements OnInit {
   @Input() product!: Product;
 
-  constructor(private cartSvc: CartService) {}
+  constructor(
+    private cartSvc: CartService,
+    private popupProdSvc: PopupProdService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -21,5 +25,6 @@ export class ProductItemComponent implements OnInit {
       quantity: 1,
     };
     this.cartSvc.setCartItem(cartItem);
+    this.popupProdSvc.popup('Added to cart');
   }
 }

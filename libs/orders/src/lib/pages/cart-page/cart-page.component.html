@@ -1,0 +1,50 @@
+<div class="cart-page" *ngIf="cartItemsDetailed">
+  <div class="row">
+    <div class="col-md-8">
+      <div>
+        <button class="btn btn-primary" (click)="backToShop()">
+          <i class="bi bi-arrow-left"></i> Continue shopping
+        </button>
+      </div>
+      <div>
+        <h4>My Cart: {{ cartCount }} Item(s)</h4>
+      </div>
+      <div class="cart-shipping">
+        Shipping after the payment, Delivery time: 1 to 4 working days
+
+      </div>
+      <div class="cart-item mb-2" *ngFor="let cartItem of cartItemsDetailed">
+        <div class="row">
+          <div class="col-md-2 cart-item-image">
+            <img [src]="cartItem?.product?.image" [attr.alt]="cartItem?.product?.name">
+          </div>
+          <div class="col-md-7">
+            <div class="cart-item-name">
+              {{cartItem?.product?.name}}
+            </div>
+            <div class="cart-item-price">
+              {{ cartItem?.product?.price | currency: 'EUR'}}
+            </div>
+            <div class="cart-item-remove">
+              <button class="btn btn-danger" (click)="deleteCartItem(cartItem)"><i class="bi bi-trash"></i></button>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="cart-item-quantity">
+              <label for="quantity" class="form-label">Quantity</label>
+              <input [id]="cartItem.product.id" type="number" class="form-control" [min]="1" [max]="99">
+            </div>
+            <div class="cart-item-subtotal">
+              Subtotal:
+              <span class="cart-item-subtotal-value">{{ cartItem.product.price * cartItem.quantity| currency:
+                'EUR'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <orders-order-summary></orders-order-summary>
+    </div>
+  </div>
+</div>

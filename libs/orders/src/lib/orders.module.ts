@@ -3,14 +3,21 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
 import { CartService } from './services/cart.service';
 import { CartIconComponent } from './components/cart-icon/cart-icon.component';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 
-export const ordersRoutes: Route[] = [];
+export const ordersRoutes: Route[] = [
+  {
+    path: 'cart',
+    component: CartPageComponent,
+  },
+];
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule.forChild(ordersRoutes)],
   providers: [CartService],
-  declarations: [CartIconComponent],
-  exports: [CartIconComponent],
+  declarations: [CartIconComponent, CartPageComponent, OrderSummaryComponent],
+  exports: [CartIconComponent, CartPageComponent, OrderSummaryComponent],
 })
 export class OrdersModule {
   constructor() {}

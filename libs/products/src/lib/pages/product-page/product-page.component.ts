@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem, CartService } from '@inka-shop/orders';
 import { Subscription } from 'rxjs';
 import { Product } from '../../models/product';
+import { PopupProdService } from '../../services/popup-prod.service';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
@@ -11,12 +13,14 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
   product!: Product;
-  quantity = 0;
+  quantity = 1;
   endSubs$!: Subscription;
 
   constructor(
     private productsSvc: ProductsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cartSvc: CartService,
+    private popupProdSvc: PopupProdService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +31,15 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  addToCart() {}
+  addToCart() {
+    const cartItem: CartItem = {
+      productId: this.product.id,
+      quantity: this.quantity,
+    };
+
+    this.cartSvc.setCartItem(cartItem);
+    this.popupProdSvc.popup('Added to cart');
+  }
 
   private _getProduct(id: string) {
     this.endSubs$ = this.productsSvc.getProduct(id).subscribe((res) => {

@@ -9,6 +9,7 @@ import { Order } from '../models/order.model';
 })
 export class OrdersService {
   apiURLOrders = environment.apiURL + 'orders';
+  apiURLProducts = environment.apiURL + 'products';
 
   constructor(private http: HttpClient) {}
 
@@ -33,5 +34,9 @@ export class OrdersService {
 
   deleteOrder(orderId: string): Observable<any> {
     return this.http.delete<any>(`${this.apiURLOrders}/${orderId}`);
+  }
+
+  getProduct(productId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiURLProducts}/${productId}`);
   }
 }
