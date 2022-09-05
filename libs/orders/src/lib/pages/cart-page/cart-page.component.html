@@ -32,7 +32,8 @@
           <div class="col-md-3">
             <div class="cart-item-quantity">
               <label for="quantity" class="form-label">Quantity</label>
-              <input [id]="cartItem.product.id" type="number" class="form-control" [min]="1" [max]="99">
+              <input [id]="cartItem.product.id" type="number" class="form-control" [min]="1" [max]="99"
+                [(ngModel)]="cartItem.quantity" (input)="updateCartItemQuantity($event, cartItem)">
             </div>
             <div class="cart-item-subtotal">
               Subtotal:

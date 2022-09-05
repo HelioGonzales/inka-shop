@@ -1,0 +1,13 @@
+.checkout-page {
+  .checkout {
+    &-form {
+      margin-top: 25px;
+    }
+
+    &-button {
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

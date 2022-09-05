@@ -1,0 +1,76 @@
+<div class="checkout-page">
+  <div>
+    <button class="btn btn-primary" (click)="backToCart()"><i class="bi bi-arrow-left"></i> Back to cart</button>
+  </div>
+</div>
+<div class="row checkout-form">
+  <div class="col-md-8 mb-3">
+    <form [formGroup]="form" class="row g-3" (ngSubmit)="form">
+      <div class="col-md-6">
+        <label class="form-label">Name</label>
+        <input formControlName="name" type="text" class="form-control">
+        <small *ngIf="!form.get('name')?.valid && form.get('name')?.touched" class="text-danger">
+          Name is required
+        </small>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input formControlName="email" type="email" class="form-control">
+        <small *ngIf="!form.get('email')?.valid && form.get('email')?.touched" class="text-danger">
+          <span *ngIf="!form.get('email')?.errors?.['required']">email is required</span>
+          <span *ngIf="!form.get('email')?.errors?.['email']">email is invalid</span>
+        </small>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Phone</label>
+        <input formControlName="phone" type="text" class="form-control">
+        <small *ngIf="!form.get('phone')?.valid && form.get('phone')?.touched" class="text-danger">
+          phone is required
+        </small>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">street</label>
+        <input formControlName="street" type="text" class="form-control">
+        <small *ngIf="!form.get('street')?.valid && form.get('street')?.touched" class="text-danger">
+          street is required
+        </small>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">apartment</label>
+        <input formControlName="apartment" type="text" class="form-control">
+        <small *ngIf="!form.get('apartment')?.valid && form.get('apartment')?.touched" class="text-danger">
+          apartment is required
+        </small>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Zip Code</label>
+        <input formControlName="zip" type="text" class="form-control">
+        <small *ngIf="!form.get('zip')?.valid && form.get('zip')?.touched" class="text-danger">
+          Zip Code is required
+        </small>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">City</label>
+        <input formControlName="city" type="text" class="form-control">
+        <small *ngIf="!form.get('city')?.valid && form.get('city')?.touched" class="text-danger">
+          city is required
+        </small>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Country</label>
+        <select formControlName="country" class="form-select" aria-label="Default select example">
+          <option [ngValue]="null">Select country</option>
+          <option [value]="country.id" *ngFor="let country of countries">{{
+            country.name }}</option>
+        </select>
+        <small *ngIf="!form.get('country')?.valid && form.get('country')?.touched" class="text-danger">
+          Country is required
+        </small>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-4 checkout-button">
+    <orders-order-summary></orders-order-summary>
+    <button class="btn btn-primary mt-3" [disabled]="!form.valid" (click)="placeOrder()">Place order</button>
+  </div>
+</div>

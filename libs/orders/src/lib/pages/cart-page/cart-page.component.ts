@@ -35,6 +35,16 @@ export class CartPageComponent implements OnInit, OnDestroy {
     this.cartSvc.deleteCartItem(cartItem.product.id);
   }
 
+  updateCartItemQuantity(event: any, cartItem: CartItemsDetailed) {
+    this.cartSvc.setCartItem(
+      {
+        productId: cartItem.product.id,
+        quantity: event.target.value,
+      },
+      true
+    );
+  }
+
   private _getCartDetails() {
     this.endSubs$ = this.cartSvc.cart$.subscribe((resCart) => {
       this.cartItemsDetailed = [];
