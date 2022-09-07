@@ -1,8 +1,7 @@
 import { PopupService } from './../../../shared/service/popup.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Order, OrdersService } from '@inka-shop/orders';
-import { ORDER_STATUS } from '../order.constant';
+import { Order, OrdersService, ORDER_STATUS } from '@inka-shop/orders';
 import swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 

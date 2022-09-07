@@ -12,3 +12,6 @@ export * from './lib/pages/cart-page/cart-page.component';
 export * from './lib/components/order-summary/order-summary.component';
 
 export * from './lib/pages/checkout-page/checkout-page.component';
+export * from './lib/order.constant';
+
+export * from './lib/pages/thank-you/thank-you.component';

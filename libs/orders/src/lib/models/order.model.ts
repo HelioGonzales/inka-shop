@@ -2,7 +2,7 @@ import { User } from '@inka-shop/users';
 import { OrderItem } from './order-item.model';
 
 export class Order {
-  id!: string;
+  id?: any;
   // orderItems?: OrderItem[];
   orderItems?: any[];
   shippingAddress1?: string;

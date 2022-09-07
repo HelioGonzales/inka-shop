@@ -1,8 +1,7 @@
 import { PopupService } from './../../../shared/service/popup.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Order, OrdersService } from '@inka-shop/orders';
-import { ORDER_STATUS } from '../order.constant';
+import { Order, OrdersService, ORDER_STATUS } from '@inka-shop/orders';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -31,7 +30,7 @@ export class OrdersDetailComponent implements OnInit, OnDestroy {
 
   onChangeStatus(event: any) {
     this.endSubs = this.orderSvc
-      .updateOrder({ status: event.target.value }, this.order.id)
+      .updateOrder({ status: event.target.value }, this.order.id || '')
       .subscribe((res) => {
         this.popupSvc.popup(
           `status was changed ${event.target.value}`,

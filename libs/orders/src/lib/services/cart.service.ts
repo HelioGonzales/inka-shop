@@ -25,7 +25,7 @@ export class CartService {
   }
 
   getCart(): Cart {
-    const cartJsonString: string = localStorage.getItem(CART_KEY);
+    const cartJsonString: string = localStorage.getItem(CART_KEY) || '';
     const cart: Cart = JSON.parse(cartJsonString);
     return cart;
   }
@@ -68,5 +68,14 @@ export class CartService {
     localStorage.setItem(CART_KEY, cartJsonString);
 
     this.cart$.next(cart);
+  }
+
+  empyCart() {
+    const inititalCart = {
+      items: [],
+    };
+    const initialCartJson = JSON.stringify(inititalCart);
+    localStorage.setItem(CART_KEY, initialCartJson);
+    this.cart$.next(inititalCart);
   }
 }
