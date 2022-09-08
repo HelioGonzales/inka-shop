@@ -21,7 +21,7 @@ export class CheckoutPageComponent implements OnInit {
   form!: FormGroup;
   orderItems: OrderItem[] | undefined = undefined;
   countries: any[] = [];
-  userId = '6317a959d0d6a2bb6af149b6';
+  userId!: string;
 
   constructor(
     private router: Router,

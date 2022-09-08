@@ -1,3 +1,4 @@
+import { AuthguardGuard } from '@inka-shop/users';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
@@ -16,6 +17,7 @@ export const ordersRoutes: Route[] = [
   },
   {
     path: 'checkout',
+    canActivate: [AuthguardGuard],
     component: CheckoutPageComponent,
   },
   {

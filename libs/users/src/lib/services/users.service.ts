@@ -31,4 +31,6 @@ export class UsersService {
   deleteUser(userId: string): Observable<any> {
     return this.http.delete<any>(`${this.apiURLUsers}/${userId}`);
   }
+
+  initAppSession() {}
 }

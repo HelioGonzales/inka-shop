@@ -80,19 +80,19 @@
               <div class="col-4">
                 <h6>Order Address</h6>
                 <p>
-                  {{order.shippingAddress1}} <br>
-                  {{order.shippingAddress2}} <br>
-                  {{order.zip}} <br>
-                  {{order.country}}
+                  {{order?.shippingAddress1}} <br>
+                  {{order?.shippingAddress2}} <br>
+                  {{order?.zip}} <br>
+                  {{order?.country}}
                 </p>
               </div>
               <div class="col-4">
                 <h6>Customer Info</h6>
-                <p>{{order.user.name}}</p>
+                <p>{{order?.user?.name}}</p>
               </div>
               <div class="col-4">
                 <h6>Contact Info</h6>
-                <p>{{order.phone}}</p>
+                <p>{{order?.phone}}</p>
               </div>
             </div>
           </div>

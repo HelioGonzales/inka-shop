@@ -16,5 +16,6 @@ const routes: Routes = [{ path: 'login', component: LoginComponent }];
     RouterModule.forChild(routes),
   ],
   declarations: [LoginComponent],
+  providers: [],
 })
 export class UsersModule {}

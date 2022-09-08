@@ -10,8 +10,9 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { ProductsModule } from '@inka-shop/products';
 import { UiModule } from '@inka-shop/ui';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OrdersModule } from '@inka-shop/orders';
+import { JwtInterceptor, UsersModule } from '@inka-shop/users';
 
 const routes: Routes = [
   {
@@ -36,8 +37,11 @@ const routes: Routes = [
     ProductsModule,
     UiModule,
     OrdersModule,
+    UsersModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
