@@ -1,3 +1,4 @@
+import { LocalstorageService } from './../../../../../users/src/lib/services/localstorage.service';
 import { OrdersService } from './../../services/orders.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -9,6 +10,7 @@ import { OrderItem } from '../../models/order-item.model';
 import { Order } from '../../models/order.model';
 import { CartService } from '../../services/cart.service';
 import { ORDER_STATUS } from '../../order.constant';
+import { UsersService } from '@inka-shop/users';
 
 declare const require: (arg0: string) => countriesLib.LocaleData;
 
@@ -26,13 +28,35 @@ export class CheckoutPageComponent implements OnInit {
   constructor(
     private router: Router,
     private cartSvc: CartService,
-    private ordersSvc: OrdersService
+    private ordersSvc: OrdersService,
+    private localStorageSVC: LocalstorageService,
+    private userSVC: UsersService
   ) {}
 
   ngOnInit(): void {
     this._initCheckoutForm();
     this._getCartItems();
     this._getCountries();
+
+    // getting the user to autofill once user get logged
+    const token = this.localStorageSVC.getToken();
+    const tokenDecode = JSON.parse(atob(token.split('.')[1]));
+    const userData = tokenDecode.userId;
+
+    this.userSVC.getUser(userData).subscribe((res) => {
+      if (token) {
+        this.form.setValue({
+          name: res.name,
+          email: res.email,
+          phone: res.phone,
+          street: res.street,
+          apartment: res.apartment,
+          zip: res.zip,
+          city: res.city,
+          country: res.country,
+        });
+      }
+    });
   }
 
   backToCart() {
